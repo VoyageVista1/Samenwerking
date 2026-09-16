@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Beknopte klantreis van TUI.nl met processtappen, touchpoints, concurrentievergelijking en verbeterkansen.">
+  <title>Klantreis TUI.nl — Van inspiratie tot vertrek</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --surface: #ffffff;
+      --surface-2: #f0f4f8;
+      --text: #16202a;
+      --muted: #5d6875;
+      --line: #dce3ea;
+      --accent: #d71920;
+      --accent-soft: #fff1f2;
+      --accent-2: #17324d;
+      --success: #177245;
+      --shadow: 0 12px 34px rgba(16, 31, 48, .08);
+      --radius: 18px;
+      --radius-sm: 12px;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #fff 0, var(--bg) 300px);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: #0b5cad; text-underline-offset: .18em; }
+    a:hover { text-decoration-thickness: 2px; }
+    img, svg { max-width: 100%; }
+
+    .page {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    header {
+      position: relative;
+      overflow: hidden;
+      padding: 64px 0 54px;
+      border-bottom: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 88% 12%, rgba(215,25,32,.10), transparent 34%),
+        radial-gradient(circle at 72% 55%, rgba(23,50,77,.08), transparent 38%),
+        #fff;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 30px;
+      height: 3px;
+      border-radius: 99px;
+      background: var(--accent);
+    }
+
+    h1, h2, h3 { line-height: 1.16; margin-top: 0; }
+    h1 {
+      font-size: clamp(2.3rem, 7vw, 5.1rem);
+      letter-spacing: -.055em;
+      margin-bottom: 12px;
+      max-width: 800px;
+    }
+
+    .subtitle {
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      color: var(--muted);
+      max-width: 780px;
+      margin: 0;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 34px;
+      max-width: 850px;
+    }
+
+    .meta-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: rgba(255,255,255,.8);
+      padding: 13px 15px;
+    }
+    .meta-card span { display: block; }
+    .meta-label { font-size: .74rem; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+    .meta-value { margin-top: 3px; font-weight: 700; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255,255,255,.90);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding: 10px 0;
+    }
+    .nav-inner::-webkit-scrollbar { display: none; }
+    nav a {
+      flex: 0 0 auto;
+      text-decoration: none;
+      color: var(--text);
+      font-size: .9rem;
+      font-weight: 700;
+      padding: 8px 11px;
+      border-radius: 999px;
+    }
+    nav a:hover { background: var(--surface-2); }
+
+    main { padding: 38px 0 56px; }
+    section { scroll-margin-top: 78px; margin-bottom: 56px; }
+
+    .section-kicker {
+      font-size: .77rem;
+      font-weight: 900;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    h2 {
+      font-size: clamp(1.65rem, 3vw, 2.45rem);
+      letter-spacing: -.03em;
+      margin-bottom: 12px;
+    }
+    h3 { font-size: 1.1rem; margin-bottom: 7px; }
+    .lead { color: var(--muted); max-width: 830px; margin-top: 0; }
+
+    .callout {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 14px;
+      background: var(--accent-soft);
+      border: 1px solid #ffd6d8;
+      border-radius: var(--radius);
+      padding: 18px;
+      margin: 22px 0 26px;
+    }
+    .callout-icon {
+      width: 44px; height: 44px;
+      display: grid; place-items: center;
+      border-radius: 12px;
+      background: #fff;
+      color: var(--accent);
+      font-weight: 900;
+      border: 1px solid #ffd6d8;
+    }
+    .callout p { margin: 0; }
+
+    .phase-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0,1fr));
+      gap: 10px;
+      margin-top: 22px;
+    }
+    .phase {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 16px rgba(16,31,48,.04);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      min-height: 135px;
+    }
+    .phase-num {
+      display: inline-flex;
+      width: 28px; height: 28px;
+      align-items: center; justify-content: center;
+      border-radius: 50%;
+      background: var(--accent-2);
+      color: white;
+      font-weight: 800;
+      font-size: .78rem;
+      margin-bottom: 12px;
+    }
+    .phase p { margin: 0; color: var(--muted); font-size: .92rem; }
+
+    .journey {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+    .step-card {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px 20px 18px 66px;
+      box-shadow: 0 5px 18px rgba(16,31,48,.04);
+    }
+    .step-number {
+      position: absolute;
+      left: 18px; top: 19px;
+      width: 34px; height: 34px;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #fff;
+      display: grid; place-items: center;
+      font-weight: 900;
+    }
+    .step-card dl { margin: 13px 0 0; }
+    .step-card dt {
+      margin-top: 9px;
+      font-size: .76rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--muted);
+    }
+    .step-card dd { margin: 2px 0 0; }
+
+    .timing {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .timing > div {
+      padding: 15px;
+      border-radius: var(--radius-sm);
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+    }
+    .timing strong { display: block; margin-bottom: 3px; }
+    .timing span { color: var(--muted); font-size: .9rem; }
+
+    .table-wrap {
+      margin-top: 22px;
+      overflow-x: auto;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+      background: var(--surface);
+    }
+    table { width: 100%; border-collapse: collapse; min-width: 820px; }
+    th, td { padding: 15px 16px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+    th {
+      background: #f1f4f7;
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    tbody tr:last-child td { border-bottom: 0; }
+    td:first-child { font-weight: 800; width: 18%; }
+
+    .observations {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .observation {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+    }
+    .observation strong { display: block; margin-bottom: 4px; }
+    .observation p { margin: 0; color: var(--muted); }
+
+    .improvements {
+      display: grid;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .improvement {
+      display: grid;
+      grid-template-columns: 46px 1fr;
+      gap: 15px;
+      align-items: start;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+    .improvement-num {
+      display: grid; place-items: center;
+      width: 46px; height: 46px;
+      border-radius: 14px;
+      font-weight: 900;
+      background: var(--accent-2);
+      color: white;
+    }
+    .improvement p { margin: 0; color: var(--muted); }
+
+    .summary-box {
+      margin-top: 25px;
+      border-radius: var(--radius);
+      padding: 22px;
+      background: linear-gradient(135deg, #17324d, #244f72);
+      color: white;
+      box-shadow: var(--shadow);
+    }
+    .summary-box h3 { margin-bottom: 8px; }
+    .summary-box p { margin: 0; color: rgba(255,255,255,.85); }
+
+    .sources {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px 22px;
+      padding: 0;
+      list-style: none;
+      margin: 22px 0 0;
+    }
+    .sources li {
+      border-bottom: 1px solid var(--line);
+      padding: 0 0 10px;
+      overflow-wrap: anywhere;
+    }
+    .sources small { display: block; color: var(--muted); margin-top: 2px; }
+
+    footer {
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      padding: 24px 0 34px;
+      font-size: .88rem;
+    }
+
+    @media (max-width: 900px) {
+      .phase-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .phase:last-child { grid-column: 1 / -1; }
+      .journey { grid-template-columns: 1fr; }
+      .sources { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 700px) {
+      .page { width: min(calc(100% - 22px), var(--max)); }
+      header { padding: 44px 0 36px; }
+      .meta-grid { grid-template-columns: 1fr; }
+      main { padding-top: 28px; }
+      section { margin-bottom: 44px; }
+      .phase-grid, .timing, .observations { grid-template-columns: 1fr; }
+      .phase:last-child { grid-column: auto; }
+      .callout { grid-template-columns: 1fr; }
+      .callout-icon { width: 38px; height: 38px; }
+      .step-card { padding: 18px 16px 16px 58px; }
+      .step-number { left: 14px; top: 17px; }
+
+      .table-wrap {
+        overflow: visible;
+        border: 0;
+        box-shadow: none;
+        background: transparent;
+      }
+      table, thead, tbody, tr, th, td { display: block; }
+      table { min-width: 0; }
+      thead { display: none; }
+      tbody { display: grid; gap: 12px; }
+      tr {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: 0 4px 16px rgba(16,31,48,.04);
+      }
+      td {
+        display: grid;
+        grid-template-columns: minmax(92px, 34%) 1fr;
+        gap: 10px;
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--line);
+        width: auto !important;
+      }
+      td::before {
+        content: attr(data-label);
+        font-size: .75rem;
+        font-weight: 900;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: .04em;
+      }
+      td:first-child {
+        display: block;
+        background: var(--surface-2);
+        font-size: 1rem;
+        font-weight: 900;
+      }
+      td:first-child::before { display: none; }
+      tr td:last-child { border-bottom: 0; }
+      .improvement { grid-template-columns: 38px 1fr; gap: 12px; padding: 16px; }
+      .improvement-num { width: 38px; height: 38px; border-radius: 11px; }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0d1319;
+        --surface: #141c24;
+        --surface-2: #1a2530;
+        --text: #edf3f7;
+        --muted: #aab6c1;
+        --line: #2a3743;
+        --accent-soft: #2a1619;
+        --accent-2: #38678d;
+        --shadow: 0 12px 34px rgba(0,0,0,.26);
+      }
+      body { background: linear-gradient(180deg, #111820 0, var(--bg) 300px); }
+      header { background: radial-gradient(circle at 88% 12%, rgba(215,25,32,.16), transparent 34%), #111820; }
+      nav { background: rgba(17,24,32,.90); }
+      .meta-card, .callout-icon { background: var(--surface); }
+      .callout { border-color: #5f2b31; }
+      th { background: #1d2934; }
+      a { color: #76baff; }
+    }
+
+    @media print {
+      nav { display: none; }
+      body { background: #fff; }
+      header { padding-top: 30px; }
+      .page { width: 100%; max-width: none; padding: 0 18mm; }
+      .step-card, .phase, .improvement, .observation, .summary-box { break-inside: avoid; box-shadow: none; }
+      section { break-inside: auto; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="page">
+      <div class="eyebrow">Klantreis & procesanalyse</div>
+      <h1>TUI.nl</h1>
+      <p class="subtitle">Van inspiratie tot vertrek — een beknopte klantreis met digitale touchpoints, concurrentievergelijking en verbeterkansen.</p>
+      <div class="meta-grid" aria-label="Documentinformatie">
+        <div class="meta-card"><span class="meta-label">Onderwerp</span><span class="meta-value">Online vakantie boeken</span></div>
+        <div class="meta-card"><span class="meta-label">Scope</span><span class="meta-value">TUI.nl + klantomgeving</span></div>
+        <div class="meta-card"><span class="meta-label">Onderzocht op</span><span class="meta-value">10 september 2026</span></div>
+      </div>
+    </div>
+  </header>
+
+  <nav aria-label="Inhoud">
+    <div class="page nav-inner">
+      <a href="#overzicht">Overzicht</a>
+      <a href="#klantreis">Klantreis</a>
+      <a href="#vergelijking">Concurrenten</a>
+      <a href="#verbeteringen">Verbeterkansen</a>
+      <a href="#bronnen">Bronnen</a>
+    </div>
+  </nav>
+
+  <main class="page">
+    <section id="overzicht">
+      <div class="section-kicker">1 / Procesoverzicht</div>
+      <h2>De klantreis in één oogopslag</h2>
+      <p class="lead">De website ondersteunt de klant vanaf de eerste zoekopdracht tot de voorbereiding op vertrek. De belangrijkste overgang ligt na de boeking: vanaf dat moment verschuift de klant van TUI.nl naar myTUI en de TUI-app.</p>
+
+      <div class="callout">
+        <div class="callout-icon">→</div>
+        <p><strong>Belangrijkste observatie.</strong> TUI bouwt de boeking op als een trechter: eerst veel keuze en filters, daarna steeds concretere keuzes rond vlucht, kamer, gegevens en extra’s. Na de bevestiging wordt selfservice belangrijker.</p>
+      </div>
+
+      <h3>Wat de klant globaal ervaart</h3>
+      <div class="phase-grid">
+        <article class="phase"><span class="phase-num">1</span><h3>Oriëntatie</h3><p>Veel aanbod, bestemmingen en reisvormen.</p></article>
+        <article class="phase"><span class="phase-num">2</span><h3>Keuze</h3><p>Filters, prijsdetails, reviews en accommodatie-informatie.</p></article>
+        <article class="phase"><span class="phase-num">3</span><h3>Boeking</h3><p>Reis samenstellen, persoonsgegevens en optionele extra’s.</p></article>
+        <article class="phase"><span class="phase-num">4</span><h3>Beheer</h3><p>Betaling, documenten en extra services via myTUI.</p></article>
+        <article class="phase"><span class="phase-num">5</span><h3>Vertrek</h3><p>Stoelreservering, online inchecken en transferinformatie.</p></article>
+      </div>
+    </section>
+
+    <section id="klantreis">
+      <div class="section-kicker">2 / Klantreis</div>
+      <h2>Stap voor stap door TUI.nl</h2>
+      <p class="lead">Onderstaande stappen zijn gebaseerd op de actuele TUI-zoek- en boekingsinformatie en de selfservice-informatie op de website.</p>
+
+      <div class="journey">
+        <article class="step-card">
+          <div class="step-number">1</div>
+          <h3>Oriënteren</h3>
+          <dl><dt>Actie van klant</dt><dd>Kiest vakantietype, bestemming, periode, reisduur en aantal personen.</dd><dt>Touchpoint</dt><dd>Zoekfunctie en inspiratiepagina’s.</dd><dt>Procesdoel</dt><dd>Snel van een breed idee naar een concrete zoekopdracht.</dd></dl>
+        </article>
+        <article class="step-card">
+          <div class="step-number">2</div>
+          <h3>Zoeken & filteren</h3>
+          <dl><dt>Actie van klant</dt><dd>Verfijnt op vervoer, accommodatie en faciliteiten; vergelijkt resultaten.</dd><dt>Touchpoint</dt><dd>Resultatenlijst, sorteren, filters, kaartweergave en prijsdetails.</dd><dt>Procesdoel</dt><dd>Prijs en relevante verschillen moeten direct zichtbaar zijn.</dd></dl>
+        </article>
+        <article class="step-card">
+          <div class="step-number">3</div>
+          <h3>Accommodatie beoordelen</h3>
+          <dl><dt>Actie van klant</dt><dd>Bekijkt hotel, ligging, foto’s, reviews, verzorging en beschikbaarheid.</dd><dt>Touchpoint</dt><dd>Accommodatiedetailpagina.</dd><dt>Procesdoel</dt><dd>Vertrouwen opbouwen vóórdat de klant de boekingsflow start.</dd></dl>
+        </article>
+        <article class="step-card">
+          <div class="step-number">4</div>
+          <h3>Reis samenstellen</h3>
+          <dl><dt>Actie van klant</dt><dd>Past reisgezelschap/verzorging aan en kiest waar relevant vlucht, vertrektijd of comfort.</dd><dt>Touchpoint</dt><dd>Prijs- en reisconfiguratie.</dd><dt>Procesdoel</dt><dd>Prijsfeedback moet duidelijk blijven terwijl keuzes de totaalprijs veranderen.</dd></dl>
+        </article>
+        <article class="step-card">
+          <div class="step-number">5</div>
+          <h3>Gegevens & extra’s</h3>
+          <dl><dt>Actie van klant</dt><dd>Vult persoonsgegevens in en kiest o.a. bagage, faciliteiten/excursies en verzekering.</dd><dt>Touchpoint</dt><dd>Boekingsformulier.</dd><dt>Procesdoel</dt><dd>Veel keuzes in korte tijd; voorkom onduidelijke of onverwachte extra kosten.</dd></dl>
+        </article>
+        <article class="step-card">
+          <div class="step-number">6</div>
+          <h3>Controleren & boeken</h3>
+          <dl><dt>Actie van klant</dt><dd>Controleert gegevens en prijs en bevestigt de boeking definitief.</dd><dt>Touchpoint</dt><dd>Laatste controlescherm en boekingsknop.</dd><dt>Procesdoel</dt><dd>De klant moet weten dat de boeking betalingsverplichtend is.</dd></dl>
+        </article>
+        <article class="step-card">
+          <div class="step-number">7</div>
+          <h3>Betalen & beheren</h3>
+          <dl><dt>Actie van klant</dt><dd>Ontvangt bevestiging/factuur en beheert de reis via myTUI.</dd><dt>Touchpoint</dt><dd>myTUI: betaling, boeking, documenten en extra services.</dd><dt>Procesdoel</dt><dd>Eén centrale omgeving verlaagt contactdruk op klantenservice.</dd></dl>
+        </article>
+        <article class="step-card">
+          <div class="step-number">8</div>
+          <h3>Voor vertrek</h3>
+          <dl><dt>Actie van klant</dt><dd>Downloadt reisbescheiden, reserveert eventueel een stoel, checkt online in en controleert transfer.</dd><dt>Touchpoint</dt><dd>myTUI, TUI-app en TUI fly selfservice.</dd><dt>Procesdoel</dt><dd>Heldere deadlines en reminders voorkomen stress vlak voor vertrek.</dd></dl>
+        </article>
+      </div>
+
+      <div class="timing" aria-label="Belangrijke momenten voor vertrek">
+        <div><strong>21 dagen voor vertrek</strong><span>Reisbescheiden beschikbaar in myTUI na volledige betaling.</span></div>
+        <div><strong>30 dagen tot 48 uur</strong><span>Stoeltypes kunnen doorgaans binnen deze periode worden geboekt.</span></div>
+        <div><strong>Vanaf 24 uur</strong><span>TUI fly online check-in opent vanaf 24 uur voor vertrek.</span></div>
+      </div>
+    </section>
+
+    <section id="vergelijking">
+      <div class="section-kicker">3 / Concurrentievergelijking</div>
+      <h2>TUI versus Sunweb en Corendon</h2>
+      <p class="lead">De vergelijking focust op onderdelen die direct invloed hebben op Sales & Boekingen en op de digitale klantbeleving. Het is geen volledige prijs- of productvergelijking.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Onderdeel</th><th>TUI</th><th>Sunweb</th><th>Corendon</th></tr></thead>
+          <tbody>
+            <tr><td>Boeken zonder account</td><td data-label="TUI">Ja; myTUI wordt wel aangeraden.</td><td data-label="Sunweb">Boeking kan daarna via Mijn Sunweb worden beheerd.</td><td data-label="Corendon">Mijn Corendon ondersteunt account én inloggen met boekingsnummer.</td></tr>
+            <tr><td>Zoeken / vergelijken</td><td data-label="TUI">Sterk: filters, lijst/kaart en zichtbare prijsdetails.</td><td data-label="Sunweb">Sterke vakantiezoeker; veel airline-specifieke informatie buiten de kernflow.</td><td data-label="Corendon">Breed aanbod; eigen én externe airlines, afhankelijk van type boeking.</td></tr>
+            <tr><td>Extra’s tijdens/na boeken</td><td data-label="TUI">Bagage, excursies, verzekering e.d.; veel extra services later via myTUI.</td><td data-label="Sunweb">Bagage en transfer kunnen tijdens boeken en later via Mijn Sunweb worden bijgeboekt.</td><td data-label="Corendon">Extra producten/services via Mijn Corendon; transfer kan ook later worden bijgeboekt.</td></tr>
+            <tr><td>Transfer</td><td data-label="TUI">Niet standaard inbegrepen; tijdens boeken mogelijk. Later bijboeken/wijzigen is voor veel reizen via servicecontact.</td><td data-label="Sunweb">Soms inbegrepen; privétransfer is in boekingsstap 1 te kiezen en vaak later via Mijn Sunweb.</td><td data-label="Corendon">Niet standaard inbegrepen; kan tot kort voor vertrek via Mijn Corendon worden bijgeboekt.</td></tr>
+            <tr><td>Betaling</td><td data-label="TUI">Bij meer dan 6 weken: 30% aanbetaling, restant uiterlijk 6 weken voor vertrek.</td><td data-label="Sunweb">Voorwaarden verschillen per boeking; selfservice via Mijn Sunweb.</td><td data-label="Corendon">35% aanbetaling + extra’s; restant mag onder voorwaarden in eigen termijnen tot 6 weken voor vertrek.</td></tr>
+            <tr><td>Wijzigen / selfservice</td><td data-label="TUI">Veel beheer via myTUI, maar een reguliere boekingswijziging is online nog niet altijd mogelijk.</td><td data-label="Sunweb">Veel extra’s via Mijn Sunweb; airline-afhankelijke handelingen kunnen buiten Sunweb plaatsvinden.</td><td data-label="Corendon">Mijn Corendon centraliseert betalingen en extra services; bij sommige boekingen zijn airline-acties extern.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="observations">
+        <article class="observation"><strong>TUI: sterke totale keten</strong><p>Zoeken, boeken, eigen vluchtservices, myTUI en app sluiten logisch op elkaar aan.</p></article>
+        <article class="observation"><strong>Sunweb: sterke selfservice voor extra’s</strong><p>Vooral transfer en bagage zijn duidelijk als aanvullende keuzes georganiseerd.</p></article>
+        <article class="observation"><strong>Corendon: betalingsflexibiliteit</strong><p>Het restantbedrag kan onder voorwaarden in meerdere zelfgekozen termijnen worden voldaan.</p></article>
+        <article class="observation"><strong>TUI: selfservice-kans</strong><p>Een boekingswijziging en sommige transferwijzigingen vereisen nog contact met de klantenservice.</p></article>
+      </div>
+    </section>
+
+    <section id="verbeteringen">
+      <div class="section-kicker">4 / Conclusie</div>
+      <h2>Kansen voor een beter digitaal boekingsproces</h2>
+      <p class="lead">De klantreis van TUI is volwassen en grotendeels logisch. De grootste winst zit niet in méér functies, maar in het verder verminderen van overdrachtsmomenten tussen website, myTUI, app, luchtvaartmaatschappij en klantenservice.</p>
+
+      <div class="improvements">
+        <article class="improvement"><div class="improvement-num">1</div><div><h3>Maak wijzigen volledig selfservice</h3><p>Laat de hoofdboeker waar mogelijk datum, reizigersgegevens, transfer en andere wijzigbare onderdelen in myTUI aanpassen, inclusief kostenpreview vóór bevestiging.</p></div></article>
+        <article class="improvement"><div class="improvement-num">2</div><div><h3>Toon één persoonlijke vertrek-tijdlijn</h3><p>Zet betaling, reisbescheiden, stoelkeuze, bagage, check-in en transfer in één chronologische checklist met deadlines en status.</p></div></article>
+        <article class="improvement"><div class="improvement-num">3</div><div><h3>Houd de totaalprijs continu zichtbaar</h3><p>Laat bij iedere keuze zien wat inbegrepen is, wat optioneel is en hoe de totaalprijs verandert. Dat verkleint verrassingen in de laatste boekingsstappen.</p></div></article>
+        <article class="improvement"><div class="improvement-num">4</div><div><h3>Maak kanaalwissels expliciet</h3><p>Als een handeling bij een airline of klantenservice moet gebeuren, vertel direct waarom, wat de klant nodig heeft en of de wijziging meteen zichtbaar wordt in myTUI.</p></div></article>
+        <article class="improvement"><div class="improvement-num">5</div><div><h3>Gebruik vergelijking als verkoopondersteuning</h3><p>Laat belangrijke verschillen tussen vluchtopties, verzorging, transfer en bagage in compacte vergelijkkaarten zien in plaats van alleen losse keuzelijsten.</p></div></article>
+      </div>
+
+      <div class="summary-box">
+        <h3>Samenvatting voor het project</h3>
+        <p>Procesmatig kan de klantreis worden gezien als: <strong>vraag specificeren → aanbod selecteren → reis configureren → gegevens vastleggen → boeking bevestigen → betaling & beheer → vertrekvoorbereiding.</strong> Dit proces raakt direct zowel Sales & Boekingen als IT & Innovatie.</p>
+      </div>
+    </section>
+
+    <section id="bronnen">
+      <div class="section-kicker">5 / Bronnen</div>
+      <h2>Geraadpleegde websites</h2>
+      <p class="lead">Geraadpleegd op 10 september 2026. Officiële websites.</p>
+      <ul class="sources">
+        <li><a href="https://www.tui.nl/klantenservice/?vraag=180227" target="_blank" rel="noopener">TUI — Hoe maak ik een nieuwe boeking?</a><small>tui.nl</small></li>
+        <li><a href="https://www.tui.nl/contact/" target="_blank" rel="noopener">TUI — myTUI / boeking en extra services</a><small>tui.nl</small></li>
+        <li><a href="https://www.tui.nl/klantenservice/?vraag=142094" target="_blank" rel="noopener">TUI — Reisbescheiden in myTUI</a><small>tui.nl</small></li>
+        <li><a href="https://www.tui.nl/vliegtickets/services/inchecken/" target="_blank" rel="noopener">TUI — Online inchecken</a><small>tui.nl</small></li>
+        <li><a href="https://www.tui.nl/klantenservice/?vraag=141202" target="_blank" rel="noopener">TUI — Transferinformatie</a><small>tui.nl</small></li>
+        <li><a href="https://www.tui.nl/klantenservice/?vraag=140321" target="_blank" rel="noopener">TUI — Boeking wijzigen</a><small>tui.nl</small></li>
+        <li><a href="https://www.sunweb.nl/vakantie/extras/bagage" target="_blank" rel="noopener">Sunweb — Bagage</a><small>sunweb.nl</small></li>
+        <li><a href="https://www.sunweb.nl/vakantie/extras/transfer" target="_blank" rel="noopener">Sunweb — Transfer</a><small>sunweb.nl</small></li>
+        <li><a href="https://www.corendon.nl/MyAccount" target="_blank" rel="noopener">Corendon — Mijn Corendon</a><small>corendon.nl</small></li>
+        <li><a href="https://klantenservice.corendon.nl/blog/category/betaling/" target="_blank" rel="noopener">Corendon — Betaling</a><small>klantenservice.corendon.nl</small></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="page">Klantreis TUI.nl — compact projectdocument, responsive voor desktop, tablet en mobiel.</div>
+  </footer>
+</body>
+</html>
