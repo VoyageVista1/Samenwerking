@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Klantreis en procesanalyse van TUI.nl, specifiek gericht op Sales & Boekingen.">
+  <meta name="theme-color" content="#d71920">
+  <title>TUI Klantreis — Sales & Boekingen</title>
+  <style>
+    :root{
+      --bg:#f5f7fa; --surface:#ffffff; --surface-2:#eef2f6; --text:#17212b; --muted:#657180;
+      --line:#dbe2e9; --red:#d71920; --red-soft:#fff0f1; --navy:#17324d; --navy-2:#234f72;
+      --green:#177245; --shadow:0 14px 34px rgba(20,35,50,.08); --radius:18px; --radius-sm:12px;
+      --max:1120px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);background:linear-gradient(180deg,#fff 0,var(--bg) 300px);line-height:1.58;
+      -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+    a{color:#0b5cad;text-underline-offset:.16em}
+    .page{width:min(calc(100% - 32px),var(--max));margin-inline:auto}
+    header{padding:64px 0 52px;border-bottom:1px solid var(--line);position:relative;overflow:hidden;
+      background:radial-gradient(circle at 88% 12%,rgba(215,25,32,.10),transparent 35%),
+      radial-gradient(circle at 73% 64%,rgba(23,50,77,.08),transparent 36%),#fff}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--red);font-size:.78rem;font-weight:900;
+      letter-spacing:.10em;text-transform:uppercase;margin-bottom:13px}
+    .eyebrow:before{content:"";width:30px;height:3px;border-radius:99px;background:var(--red)}
+    h1,h2,h3{line-height:1.14;margin-top:0}
+    h1{font-size:clamp(2.35rem,7vw,5.05rem);letter-spacing:-.055em;max-width:860px;margin-bottom:14px}
+    h2{font-size:clamp(1.65rem,3vw,2.4rem);letter-spacing:-.03em;margin-bottom:10px}
+    h3{font-size:1.08rem;margin-bottom:7px}
+    .subtitle{font-size:clamp(1.05rem,2vw,1.35rem);color:var(--muted);max-width:830px;margin:0}
+    .meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:32px;max-width:900px}
+    .meta>div{padding:13px 15px;border:1px solid var(--line);border-radius:var(--radius-sm);background:rgba(255,255,255,.82)}
+    .meta span{display:block}.meta-label{font-size:.72rem;color:var(--muted);font-weight:900;text-transform:uppercase;letter-spacing:.06em}
+    .meta-value{margin-top:3px;font-weight:750}
+    nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.91);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .nav-inner{display:flex;gap:6px;overflow-x:auto;padding:10px 0;scrollbar-width:none}.nav-inner::-webkit-scrollbar{display:none}
+    nav a{flex:0 0 auto;padding:8px 11px;border-radius:999px;text-decoration:none;color:var(--text);font-size:.88rem;font-weight:800}
+    nav a:hover{background:var(--surface-2)}
+    main{padding:38px 0 54px} section{margin-bottom:54px;scroll-margin-top:76px}
+    .kicker{font-size:.76rem;font-weight:900;letter-spacing:.10em;text-transform:uppercase;color:var(--red);margin-bottom:7px}
+    .lead{color:var(--muted);max-width:870px;margin-top:0}
+    .scope{display:grid;grid-template-columns:46px 1fr;gap:14px;padding:18px;border:1px solid #ffd4d6;background:var(--red-soft);border-radius:var(--radius);margin-top:20px}
+    .scope-icon{width:46px;height:46px;display:grid;place-items:center;border-radius:13px;background:#fff;border:1px solid #ffd4d6;color:var(--red);font-weight:900}
+    .scope p{margin:0}
+    .flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin-top:24px}
+    .flow-card{min-height:152px;padding:16px;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--surface);box-shadow:0 5px 18px rgba(20,35,50,.04)}
+    .flow-num{width:29px;height:29px;display:grid;place-items:center;border-radius:50%;background:var(--navy);color:#fff;font-size:.78rem;font-weight:900;margin-bottom:12px}
+    .flow-card p{margin:0;color:var(--muted);font-size:.91rem}
+    .process{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:24px}
+    .step{position:relative;padding:20px 20px 18px 68px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:0 5px 18px rgba(20,35,50,.04)}
+    .step-no{position:absolute;left:18px;top:19px;width:36px;height:36px;display:grid;place-items:center;border-radius:11px;background:var(--red);color:#fff;font-weight:900}
+    .step dl{margin:13px 0 0}.step dt{margin-top:9px;font-size:.73rem;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+    .step dd{margin:2px 0 0}
+    .io-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}
+    .io-card{padding:17px;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--surface)}
+    .io-card strong{display:block;margin-bottom:5px}.io-card p{margin:0;color:var(--muted);font-size:.92rem}
+    .table-wrap{margin-top:22px;overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow)}
+    table{width:100%;border-collapse:collapse;min-width:860px}th,td{padding:15px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+    th{background:#f1f4f7;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em}tbody tr:last-child td{border-bottom:0}td:first-child{font-weight:850;width:18%}
+    .observations{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:22px}
+    .obs{padding:16px;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--surface)}.obs strong{display:block;margin-bottom:4px}.obs p{margin:0;color:var(--muted)}
+    .improvements{display:grid;gap:12px;margin-top:22px}.improvement{display:grid;grid-template-columns:46px 1fr;gap:15px;padding:18px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+    .improve-no{width:46px;height:46px;display:grid;place-items:center;border-radius:14px;background:var(--navy);color:#fff;font-weight:900}.improvement p{margin:0;color:var(--muted)}
+    .summary{padding:22px;border-radius:var(--radius);background:linear-gradient(135deg,var(--navy),var(--navy-2));color:white;box-shadow:var(--shadow)}
+    .summary p{margin:0;color:rgba(255,255,255,.86)}
+    .sources{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 22px;list-style:none;padding:0;margin:20px 0 0}.sources li{padding-bottom:10px;border-bottom:1px solid var(--line);overflow-wrap:anywhere}.sources small{display:block;margin-top:2px;color:var(--muted)}
+    footer{border-top:1px solid var(--line);padding:24px 0 34px;color:var(--muted);font-size:.86rem}
+    .pill{display:inline-block;padding:3px 8px;border-radius:999px;background:var(--surface-2);font-size:.76rem;font-weight:800;color:var(--navy);margin-right:4px}
+    @media(max-width:900px){.flow{grid-template-columns:repeat(2,minmax(0,1fr))}.process{grid-template-columns:1fr}.sources{grid-template-columns:1fr}}
+    @media(max-width:700px){.page{width:min(calc(100% - 22px),var(--max))}header{padding:44px 0 36px}.meta,.flow,.io-grid,.observations{grid-template-columns:1fr}main{padding-top:28px}section{margin-bottom:43px}.scope{grid-template-columns:1fr}.scope-icon{width:38px;height:38px}.step{padding:18px 16px 16px 58px}.step-no{left:14px;top:17px;width:34px;height:34px}
+      .table-wrap{overflow:visible;border:0;box-shadow:none;background:transparent}table,thead,tbody,tr,th,td{display:block}table{min-width:0}thead{display:none}tbody{display:grid;gap:12px}tr{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:0 4px 16px rgba(20,35,50,.04)}td{display:grid;grid-template-columns:minmax(92px,34%) 1fr;gap:10px;padding:12px 14px;width:auto!important;border-bottom:1px solid var(--line)}td::before{content:attr(data-label);font-size:.73rem;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}td:first-child{display:block;background:var(--surface-2);font-size:1rem;font-weight:900}td:first-child::before{display:none}tr td:last-child{border-bottom:0}.improvement{grid-template-columns:38px 1fr;gap:12px;padding:16px}.improve-no{width:38px;height:38px;border-radius:11px}}
+    @media(prefers-color-scheme:dark){:root{--bg:#0d1319;--surface:#141c24;--surface-2:#1a2530;--text:#edf3f7;--muted:#aab6c1;--line:#2a3743;--red-soft:#2a1619;--navy:#38678d;--navy-2:#234f72;--shadow:0 12px 34px rgba(0,0,0,.25)}body{background:linear-gradient(180deg,#111820 0,var(--bg) 300px)}header{background:radial-gradient(circle at 88% 12%,rgba(215,25,32,.16),transparent 35%),#111820}nav{background:rgba(17,24,32,.91)}.meta>div,.scope-icon{background:var(--surface)}th{background:#1b2630}.pill{color:#cfe6fb}}
+    @media print{nav{display:none}body{background:#fff}.page{width:100%}header,main,footer{padding-left:18mm;padding-right:18mm}.step,.flow-card,.io-card,.obs,.improvement,.summary{break-inside:avoid;box-shadow:none}section{margin-bottom:24px}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="page">
+    <div class="eyebrow">Procesanalyse • Sales & Boekingen</div>
+    <h1>Klantreis TUI.nl<br>Sales & Boekingen</h1>
+    <p class="subtitle">Een compacte klantreis van de eerste concrete reisbehoefte tot een definitieve boeking, betaling en beheer van de boeking. De focus ligt op het commerciële proces: kiezen, samenstellen, verkopen en vastleggen.</p>
+    <div class="meta">
+      <div><span class="meta-label">Organisatie</span><span class="meta-value">TUI Nederland</span></div>
+      <div><span class="meta-label">Proces</span><span class="meta-value">Sales & Boekingen</span></div>
+      <div><span class="meta-label">Analyse</span><span class="meta-value">TUI.nl + concurrentievergelijking</span></div>
+    </div>
+  </div>
+</header>
+<nav><div class="page nav-inner">
+  <a href="#scope">Afbakening</a><a href="#overzicht">Procesoverzicht</a><a href="#stappen">Stappen</a><a href="#gegevens">Input & output</a><a href="#vergelijking">Vergelijking</a><a href="#verbetering">Verbeterkansen</a><a href="#bronnen">Bronnen</a>
+</div></nav>
+<main class="page">
+  <section id="scope">
+    <div class="kicker">01 • Afbakening</div>
+    <h2>Wat valt hier onder Sales & Boekingen?</h2>
+    <p class="lead">In deze versie begint de klantreis zodra een klant een concrete vakantie wil zoeken en eindigt het primaire verkoopproces wanneer de reis definitief is geboekt en de boeking kan worden beheerd. Inspiratiecampagnes, de vakantie zelf en uitgebreide nazorg vallen buiten de kern van deze analyse.</p>
+    <div class="scope"><div class="scope-icon">S&amp;B</div><p><strong>Belangrijk onderscheid:</strong> TUI werkt online niet met een klassieke losse offerteaanvraag. De klant stelt de reis direct samen en ziet tijdens het proces een actuele prijs- en reisspecificatie. Die specificatie vervult in de digitale klantreis feitelijk de rol van het commerciële aanbod.</p></div>
+  </section>
+
+  <section id="overzicht">
+    <div class="kicker">02 • Procesoverzicht</div>
+    <h2>Van klantbehoefte naar definitieve boeking</h2>
+    <p class="lead">Het verkoopproces kan worden teruggebracht tot acht logische stappen. Iedere stap brengt de klant dichter bij een definitieve overeenkomst.</p>
+    <div class="flow">
+      <article class="flow-card"><div class="flow-num">1</div><h3>Behoefte bepalen</h3><p>Bestemming, periode, reisduur en reisgezelschap worden gekozen.</p></article>
+      <article class="flow-card"><div class="flow-num">2</div><h3>Zoeken & filteren</h3><p>Het aanbod wordt verkleind op prijs, accommodatie, vervoer en faciliteiten.</p></article>
+      <article class="flow-card"><div class="flow-num">3</div><h3>Reis beoordelen</h3><p>De klant bekijkt accommodatie, beschikbaarheid, voorwaarden en totaalprijs.</p></article>
+      <article class="flow-card"><div class="flow-num">4</div><h3>Reis samenstellen</h3><p>Vertrektijd, verzorging, kamer en andere beschikbare keuzes worden vastgelegd.</p></article>
+      <article class="flow-card"><div class="flow-num">5</div><h3>Extra's toevoegen</h3><p>Bagage, verzekering en aanvullende diensten vergroten of wijzigen het aanbod.</p></article>
+      <article class="flow-card"><div class="flow-num">6</div><h3>Gegevens invoeren</h3><p>Persoons-, contact- en eventueel thuisblijvergegevens worden geregistreerd.</p></article>
+      <article class="flow-card"><div class="flow-num">7</div><h3>Controleren & boeken</h3><p>De klant controleert de reisspecificatie en maakt de boeking definitief.</p></article>
+      <article class="flow-card"><div class="flow-num">8</div><h3>Bevestigen & beheren</h3><p>Boekingsbevestiging, betaling en latere extra services lopen via de boeking/myTUI.</p></article>
+    </div>
+  </section>
+
+  <section id="stappen">
+    <div class="kicker">03 • Klantreis in detail</div>
+    <h2>De Sales & Boekingen-stappen</h2>
+    <p class="lead">Per stap staat wat de klant doet, wat TUI verwerkt en wat het commerciële resultaat van die stap is.</p>
+    <div class="process">
+      <article class="step"><div class="step-no">1</div><h3>Klantbehoefte vastleggen</h3><dl><dt>Klantactie</dt><dd>Kiest vakantietype, bestemming, vertrekdatum, reisduur en aantal reizigers.</dd><dt>Systeem / sales</dt><dd>Zet deze voorkeuren om in een zoekopdracht voor beschikbaar aanbod.</dd><dt>Resultaat</dt><dd>Een concrete vraag waarop het systeem passend aanbod kan tonen.</dd></dl></article>
+      <article class="step"><div class="step-no">2</div><h3>Aanbod selecteren</h3><dl><dt>Klantactie</dt><dd>Filtert en vergelijkt reizen op onder andere prijs, vervoer, accommodatie en faciliteiten.</dd><dt>Systeem / sales</dt><dd>Toont alleen combinaties die aansluiten op de ingevoerde voorkeuren en beschikbaarheid.</dd><dt>Resultaat</dt><dd>Een shortlist van relevante reizen.</dd></dl></article>
+      <article class="step"><div class="step-no">3</div><h3>Reis en prijs beoordelen</h3><dl><dt>Klantactie</dt><dd>Opent een reis, bekijkt details, verzorging, foto's, voorwaarden en prijsspecificatie.</dd><dt>Systeem / sales</dt><dd>Presenteert het commerciële aanbod inclusief actuele samenstelling en prijs.</dd><dt>Resultaat</dt><dd>De klant kiest of de reis voldoende aansluit op de behoefte.</dd></dl></article>
+      <article class="step"><div class="step-no">4</div><h3>Reis configureren</h3><dl><dt>Klantactie</dt><dd>Past waar mogelijk reisgezelschap, verzorging, vlucht/vertrektijd of andere keuzes aan.</dd><dt>Systeem / sales</dt><dd>Herberekent beschikbaarheid en prijs op basis van de gekozen configuratie.</dd><dt>Resultaat</dt><dd>Een definitieve basisreis die klaar is om geboekt te worden.</dd></dl></article>
+      <article class="step"><div class="step-no">5</div><h3>Extra verkoop</h3><dl><dt>Klantactie</dt><dd>Kiest bijvoorbeeld bagage, verzekering of andere aanvullende diensten.</dd><dt>Systeem / sales</dt><dd>Biedt relevante extra's aan en verwerkt deze in de totale boekingswaarde.</dd><dt>Resultaat</dt><dd>Hogere klantwaarde en een completer reisproduct.</dd></dl></article>
+      <article class="step"><div class="step-no">6</div><h3>Boekingsgegevens registreren</h3><dl><dt>Klantactie</dt><dd>Vult persoonsgegevens, contactgegevens en gegevens van een thuisblijver in.</dd><dt>Systeem / sales</dt><dd>Legt de gegevens vast die nodig zijn voor reservering, communicatie en uitvoering.</dd><dt>Resultaat</dt><dd>De reis kan aan de juiste reizigers worden gekoppeld.</dd></dl></article>
+      <article class="step"><div class="step-no">7</div><h3>Controle en definitieve boeking</h3><dl><dt>Klantactie</dt><dd>Controleert de volledige boeking en bevestigt met de knop om de vakantie definitief te boeken.</dd><dt>Systeem / sales</dt><dd>Legt de reservering definitief vast en genereert een boekingsnummer/bevestiging.</dd><dt>Resultaat</dt><dd>Van verkoopkans naar gerealiseerde boeking.</dd></dl></article>
+      <article class="step"><div class="step-no">8</div><h3>Betaling en boekingsbeheer</h3><dl><dt>Klantactie</dt><dd>Ontvangt de bevestiging en kan de boeking bekijken, betalen en later extra services regelen.</dd><dt>Systeem / sales</dt><dd>myTUI wordt het centrale selfservicepunt voor de bestaande boeking.</dd><dt>Resultaat</dt><dd>De verkoop is afgerond; wijzigingen en aanvullende verkoop kunnen op de boeking voortbouwen.</dd></dl></article>
+    </div>
+  </section>
+
+  <section id="gegevens">
+    <div class="kicker">04 • Procesinput & output</div>
+    <h2>Welke informatie gaat het proces in en wat komt eruit?</h2>
+    <div class="io-grid">
+      <article class="io-card"><strong>Input van de klant</strong><p>Reiswensen, reisdata, reisgezelschap, persoonsgegevens, contactgegevens en keuzes voor extra diensten.</p></article>
+      <article class="io-card"><strong>Verwerking door TUI</strong><p>Beschikbaarheid controleren, aanbod filteren, prijs berekenen, gekozen reisonderdelen combineren en boekingsgegevens vastleggen.</p></article>
+      <article class="io-card"><strong>Output</strong><p>Definitieve boeking met reisspecificatie, boekingsnummer, bevestiging, betaalinformatie en toegang tot beheer via myTUI.</p></article>
+    </div>
+    <div class="observations">
+      <div class="obs"><strong>Belangrijk verkoopmoment</strong><p>De detail- en samenstelpagina is het punt waarop de klant de inhoud en prijs van de reis tegen elkaar afweegt.</p></div>
+      <div class="obs"><strong>Belangrijk controlemoment</strong><p>Vlak voor definitief boeken moet de klant alle gegevens en kosten nog één keer kunnen controleren.</p></div>
+      <div class="obs"><strong>Belangrijk IT-moment</strong><p>Elke wijziging in bijvoorbeeld reisgezelschap, verzorging of vlucht moet direct correct doorwerken in beschikbaarheid en prijs.</p></div>
+      <div class="obs"><strong>Belangrijk commercieel moment</strong><p>Extra services worden tijdens en na het boeken aangeboden, waardoor de boeking ook na de eerste verkoop verder kan groeien.</p></div>
+    </div>
+  </section>
+
+  <section id="vergelijking">
+    <div class="kicker">05 • Concurrentievergelijking</div>
+    <h2>TUI tegenover Sunweb en Corendon</h2>
+    <p class="lead">De vergelijking is bewust beperkt tot onderdelen die direct invloed hebben op Sales & Boekingen.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Onderdeel</th><th>TUI</th><th>Sunweb</th><th>Corendon</th></tr></thead>
+      <tbody>
+        <tr><td>Reis samenstellen</td><td data-label="TUI">Zoeken, verfijnen, detailpagina bekijken en vervolgens reisvoorkeuren aanpassen voordat de boeking start.</td><td data-label="Sunweb">Sterke nadruk op flexibel samenstellen; bijvoorbeeld transfer kan al in de eerste boekingsstap worden toegevoegd.</td><td data-label="Corendon">Veel aanvullende onderdelen kunnen tijdens de boeking worden meegenomen, waaronder verzekering en bagage.</td></tr>
+        <tr><td>Extra verkoop</td><td data-label="TUI">Bagage, verzekeringen en andere faciliteiten kunnen onderdeel zijn van het boekingsproces; extra services zijn later ook via myTUI toe te voegen.</td><td data-label="Sunweb">Transfer kan tijdens het boeken én later via Mijn Sunweb worden bijgeboekt.</td><td data-label="Corendon">Verzekering en bagage kunnen tijdens het boeken worden toegevoegd; verschillende extra's kunnen later via Mijn Corendon worden geregeld.</td></tr>
+        <tr><td>Betaling</td><td data-label="TUI">Na de definitieve boeking ontvangt de klant bevestiging en betaalinformatie; de boeking kan via myTUI worden bekeken en betaald.</td><td data-label="Sunweb">Werkt met aanbetaling/restantbetaling en ondersteunt o.a. iDEAL, creditcard, bankoverschrijving en Klarna.</td><td data-label="Corendon">Bij boekingen buiten zes weken voor vertrek wordt een aanbetaling gevraagd; betaling kan via Mijn Corendon.</td></tr>
+        <tr><td>Selfservice na verkoop</td><td data-label="TUI">myTUI bundelt boeking bekijken, betalen en aanvullende services.</td><td data-label="Sunweb">Mijn Sunweb ondersteunt betaling en het later toevoegen van verschillende extra's.</td><td data-label="Corendon">Mijn Corendon ondersteunt betaling en diverse aanvullende producten/services.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="observations">
+      <div class="obs"><strong>TUI: sterk punt</strong><p>De boekingsflow is duidelijk als één doorlopend proces beschreven: voorkeuren → specificatie → gegevens/extra's → controle → definitief boeken.</p></div>
+      <div class="obs"><strong>Sunweb: opvallend</strong><p>De flexibiliteit van optionele transfer wordt expliciet als onderdeel van het samenstellen van de vakantie gepresenteerd.</p></div>
+      <div class="obs"><strong>Corendon: opvallend</strong><p>De betaal- en bijboekmogelijkheden worden sterk gekoppeld aan de persoonlijke boekingsomgeving.</p></div>
+      <div class="obs"><strong>Voor het project</strong><p>De drie partijen laten zien dat Sales & Boekingen niet stopt bij de eerste boeking: selfservice maakt aanvullende verkoop en boekingsbeheer onderdeel van hetzelfde ketenproces.</p></div>
+    </div>
+  </section>
+
+  <section id="verbetering">
+    <div class="kicker">06 • Verbeterkansen</div>
+    <h2>Mogelijke verbeteringen binnen Sales & Boekingen</h2>
+    <div class="improvements">
+      <article class="improvement"><div class="improve-no">1</div><div><h3>Maak het prijsverloop extra transparant</h3><p>Laat bij iedere wijziging direct zien welk reisonderdeel de totaalprijs verandert. Dit verkleint verrassingen vlak voor de definitieve boeking.</p></div></article>
+      <article class="improvement"><div class="improve-no">2</div><div><h3>Bewaar een samengestelde reis tijdelijk</h3><p>Een klant die nog wil overleggen kan zijn gekozen configuratie later hervatten zonder opnieuw alle filters en opties in te voeren.</p></div></article>
+      <article class="improvement"><div class="improve-no">3</div><div><h3>Bundel extra's per klantdoel</h3><p>Toon bijvoorbeeld een duidelijk pakket voor “zorgeloos reizen” of “meer comfort” in plaats van alleen losse extra producten.</p></div></article>
+      <article class="improvement"><div class="improve-no">4</div><div><h3>Gebruik één duidelijk boekingsoverzicht</h3><p>Houd tijdens het hele proces een vast samenvattingsblok zichtbaar met reizigers, data, accommodatie, vervoer, extra's en actuele totaalprijs.</p></div></article>
+      <article class="improvement"><div class="improve-no">5</div><div><h3>Maak overdracht naar selfservice naadloos</h3><p>Na het boeken moet direct duidelijk zijn wat al geregeld is, wat nog betaald moet worden en welke onderdelen later nog kunnen worden toegevoegd.</p></div></article>
+    </div>
+  </section>
+
+  <section>
+    <div class="summary"><h3>Kern van het Sales & Boekingen-proces</h3><p>TUI zet de reiswens van de klant stap voor stap om in een verkoopbare en boekbare reiscombinatie. De belangrijkste proceslogica is: <strong>behoefte bepalen → aanbod selecteren → reis configureren → prijs en extra's verwerken → klantgegevens vastleggen → controleren → definitief boeken → betalen en beheren.</strong> Daarmee vormt de website feitelijk zowel verkoopkanaal als boekingssysteem voor de klant.</p></div>
+  </section>
+
+  <section id="bronnen">
+    <div class="kicker">07 • Bronnen</div>
+    <h2>Gebruikte websites</h2>
+    <ul class="sources">
+      <li><a href="https://www.tui.nl/klantenservice/?vraag=180227">TUI — Hoe maak ik een nieuwe boeking?</a><small>Processtappen van zoeken tot definitief boeken.</small></li>
+      <li><a href="https://www.tui.nl/contact/">TUI — Contact & selfservice</a><small>Boeking bekijken, betalen en aanvullende services via myTUI.</small></li>
+      <li><a href="https://www.tui.nl/klantenservice/?vraag=142670">TUI — Extra service bijboeken</a><small>Aanvullende services toevoegen via myTUI.</small></li>
+      <li><a href="https://www.sunweb.nl/vakantie/extras/transfer">Sunweb — Transfer bijboeken</a><small>Voorbeeld van flexibele extra verkoop tijdens en na boeken.</small></li>
+      <li><a href="https://www.sunweb.nl/vakantie/reisinfo/boeken-en-betalen">Sunweb — Boeken en betalen</a><small>Betaalproces en betaalmethoden.</small></li>
+      <li><a href="https://www.corendon.nl/verzekeringen">Corendon — Verzekeringen</a><small>Extra product tijdens of na het boeken.</small></li>
+      <li><a href="https://www.corendon.nl/bagage-bijboeken">Corendon — Bagage bijboeken</a><small>Bagage tijdens en na de online boeking.</small></li>
+      <li><a href="https://www.corendon.nl/belangrijke-informatie-voordat-je-vertrekt">Corendon — Betalen & boekingsinformatie</a><small>Aanbetaling en betaling via Mijn Corendon.</small></li>
+    </ul>
+  </section>
+</main>
+<footer><div class="page">Klantreis TUI.nl — focus Sales & Boekingen • Compacte procesanalyse voor onderwijsgebruik • September 2026</div></footer>
+</body>
+</html>
