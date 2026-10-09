@@ -1,0 +1,83 @@
+# VoyageVista — ERD relationships
+
+- Address has zero or more Accommodation | Accommodation belongs to one Address
+- Address has zero or more Activity | Activity belongs to zero or one Address
+- Address has zero or more Customer | Customer belongs to zero or one Address
+- Address has zero or more Supplier | Supplier belongs to zero or one Address
+- Department has zero or more Employee | Employee belongs to one Department
+- Cancellation has zero or more Refund | Refund belongs to one Cancellation
+- PaymentMethod has zero or more Payment | Payment belongs to zero or one PaymentMethod
+- PaymentMethod has zero or more Refund | Refund belongs to one PaymentMethod
+- Booking records zero or more Cancellation | Cancellation belongs to one Booking
+- Booking records zero or more BookingLine | BookingLine belongs to one Booking
+- Booking records zero or more Invoice | Invoice belongs to one Booking
+- Booking records zero or more JournalEntry | JournalEntry belongs to one Booking
+- Booking records zero or more CustomerFeedback | CustomerFeedback belongs to zero or one Booking
+- Booking records zero or more Notification | Notification belongs to zero or one Booking
+- Booking records zero or more ServiceTicket | ServiceTicket belongs to zero or one Booking
+- Campaign contains zero or more Promotion | Promotion belongs to one Campaign
+- Campaign contains zero or more CampaignChannel | CampaignChannel belongs to one Campaign
+- Campaign contains zero or more CampaignTravelProduct | CampaignTravelProduct belongs to one Campaign
+- Campaign contains zero or more CampaignResult | CampaignResult belongs to one Campaign
+- Campaign contains zero or more CampaignSegment | CampaignSegment belongs to one Campaign
+- Campaign contains zero or more Content | Content belongs to one Campaign
+- CommunicationChannel has zero or more PaymentReminder | PaymentReminder belongs to one CommunicationChannel
+- CommunicationChannel has zero or more CampaignChannel | CampaignChannel belongs to one CommunicationChannel
+- CommunicationChannel has zero or more Content | Content belongs to one CommunicationChannel
+- CommunicationChannel has zero or more CustomerContact | CustomerContact belongs to one CommunicationChannel
+- Contract has zero or more ComponentOffer | ComponentOffer belongs to one Contract
+- Invoice has zero or more Payment | Payment belongs to one Invoice
+- Invoice has zero or more PaymentReminder | PaymentReminder belongs to one Invoice
+- PurchaseInvoice receives zero or more PurchaseInvoiceLine | PurchaseInvoiceLine belongs to one PurchaseInvoice
+- Integration has zero or more IntegrationError | IntegrationError belongs to one Integration
+- JournalEntry processes zero or more JournalEntryLine | JournalEntryLine belongs to one JournalEntry
+- Customer has zero or more Inquiry | Inquiry belongs to one Customer
+- Customer has zero or more Booking | Booking belongs to one Customer
+- Customer has zero or more Favorite | Favorite belongs to one Customer
+- Customer has zero or more CustomerSegmentMember | CustomerSegmentMember belongs to one Customer
+- Customer has zero or more CustomerContact | CustomerContact belongs to one Customer
+- Customer has zero or more CustomerFeedback | CustomerFeedback belongs to one Customer
+- Customer has zero or more CustomerPreference | CustomerPreference belongs to one Customer
+- Customer has zero or more Notification | Notification belongs to zero or one Customer
+- Customer has zero or more Quote | Quote belongs to one Customer
+- Customer has zero or more ServiceTicket | ServiceTicket belongs to one Customer
+- CustomerSegment has zero or more CampaignSegment | CampaignSegment belongs to one CustomerSegment
+- CustomerSegment has zero or more CustomerSegmentMember | CustomerSegmentMember belongs to one CustomerSegment
+- Supplier has zero or more Contract | Contract belongs to one Supplier
+- Supplier has zero or more PurchaseInvoice | PurchaseInvoice belongs to one Supplier
+- Supplier has zero or more Negotiation | Negotiation belongs to one Supplier
+- Employee has zero or more AuditLog | AuditLog belongs to zero or one Employee
+- Employee has zero or more Booking | Booking belongs to zero or one Employee
+- Employee has zero or more CustomerContact | CustomerContact belongs to zero or one Employee
+- Employee has zero or more Notification | Notification belongs to zero or one Employee
+- Employee has zero or more Quote | Quote belongs to zero or one Employee
+- Employee has zero or more Negotiation | Negotiation belongs to one Employee
+- Employee has zero or more ServiceTicket | ServiceTicket belongs to zero or one Employee
+- Employee has zero or more TicketStatusHistory | TicketStatusHistory belongs to zero or one Employee
+- Employee has zero or more ChangeRequest | ChangeRequest belongs to one Employee
+- Quote has zero or more Booking | Booking belongs to zero or one Quote
+- Quote has zero or more QuoteLine | QuoteLine belongs to one Quote
+- TravelComponent has zero or more Accommodation | Accommodation belongs to one TravelComponent
+- TravelComponent has zero or more Activity | Activity belongs to one TravelComponent
+- TravelComponent has zero or more ComponentOffer | ComponentOffer belongs to one TravelComponent
+- TravelComponent has zero or more TravelProductComponent | TravelProductComponent belongs to one TravelComponent
+- TravelComponent has zero or more Flight | Flight belongs to one TravelComponent
+- ComponentOffer has zero or more BookingLine | BookingLine belongs to one ComponentOffer
+- ComponentOffer has zero or more PurchaseInvoiceLine | PurchaseInvoiceLine belongs to one ComponentOffer
+- ComponentOffer has zero or more QuoteLine | QuoteLine belongs to one ComponentOffer
+- ComponentOffer has zero or more PriceHistory | PriceHistory belongs to one ComponentOffer
+- TravelProduct contains zero or more PromotionTravelProduct | PromotionTravelProduct belongs to one TravelProduct
+- TravelProduct contains zero or more Inquiry | Inquiry belongs to one TravelProduct
+- TravelProduct contains zero or more Booking | Booking belongs to zero or one TravelProduct
+- TravelProduct contains zero or more CampaignTravelProduct | CampaignTravelProduct belongs to one TravelProduct
+- TravelProduct contains zero or more Favorite | Favorite belongs to one TravelProduct
+- TravelProduct contains zero or more Quote | Quote belongs to zero or one TravelProduct
+- TravelProduct contains zero or more ProductMedia | ProductMedia belongs to one TravelProduct
+- TravelProduct contains zero or more TravelProductComponent | TravelProductComponent belongs to one TravelProduct
+- ServiceTicket records zero or more CustomerContact | CustomerContact belongs to zero or one ServiceTicket
+- ServiceTicket records zero or more CustomerFeedback | CustomerFeedback belongs to zero or one ServiceTicket
+- ServiceTicket records zero or more TicketStatusHistory | TicketStatusHistory belongs to one ServiceTicket
+- System has zero or more AuditLog | AuditLog belongs to zero or one System
+- System has zero or more Integration | Integration belongs to one System
+- System has zero or more Integration | Integration belongs to one System
+- System has zero or more ChangeRequest | ChangeRequest belongs to one System
