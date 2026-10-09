@@ -1,4 +1,4 @@
-# VoyageVista — ERD relationships
+# VoyageVista — ERD relationships (targeted expansion)
 
 - Address has zero or more Accommodation | Accommodation belongs to one Address
 - Address has zero or more Activity | Activity belongs to zero or one Address
@@ -81,3 +81,8 @@
 - System has zero or more Integration | Integration belongs to one System
 - System has zero or more Integration | Integration belongs to one System
 - System has zero or more ChangeRequest | ChangeRequest belongs to one System
+- DevelopmentProject has zero or more Milestones | Milestone belongs to one DevelopmentProject
+- DevelopmentProject has zero or more Tasks | Task belongs to one DevelopmentProject
+- Employee is assigned zero or more Tasks | Task is assigned to zero or one Employee
+- DevelopmentProject has zero or more ProjectTravelComponents | ProjectTravelComponent belongs to one DevelopmentProject
+- TravelComponent has zero or more ProjectTravelComponents | ProjectTravelComponent belongs to one TravelComponent
