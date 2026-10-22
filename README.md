@@ -1,4 +1,4 @@
-# Groep:
+# Groep 2:
 ## 1: IT & Innovatie + Sales & Boekingen
 -	HBO: Chiara, Finn & Jarno
 -	MBO: Dominique & Ezra
